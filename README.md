@@ -4,10 +4,10 @@
 npm start 
 
 ##Express:
- npm run dev
+npm run dev
 
 ##Setup database in server: 
-npm mysql2
+npm install mysql2
 
 ##improve security in server:
 npm install dotenv
