@@ -12,19 +12,19 @@ const pool = mysql.createPool({
     queueLimit: 0
 });
 
-// const fs = require('fs');
+ const fs = require('fs');
 
-// function checkFileSync(file) {
-//     if (fs.existsSync(file)) {
-//         console.log(`${file} exists.`);
-//         return true;
-//     } else {
-//         console.log(`${file} does not exist.`);
-//         return false;
-//     }
-// }
+function checkFileSync(file) {
+     if (fs.existsSync(file)) {
+         console.log(`${file} exists.`);
+        return true;
+     } else {
+         console.log(`${file} does not exist.`);
+        return false;
+     }
+ }
 
-// // Usage
-// checkFileSync('./process.csv');
+ // UsageS
+ checkFileSync('./process.csv');
 
 module.exports = pool.promise();

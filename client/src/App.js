@@ -1,5 +1,7 @@
 import React from 'react'
 import { useEffect, useState } from 'react'
+import Header from './components/Header.js';
+import FrontPage from './pages/FrontPage.js';
 
 function App() {
 
@@ -20,9 +22,10 @@ function App() {
     )
   }, [])
   
+  //add components here
   return (
     <div>
-      
+      <FrontPage />
     </div>
   )
 }
