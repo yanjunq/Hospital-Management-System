@@ -1,7 +1,9 @@
 import React from 'react'
 import { useEffect, useState } from 'react'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Header from './components/Header.js';
 import FrontPage from './pages/FrontPage.js';
+import SignUp from './pages/SignUp.js';
 
 function App() {
 
@@ -24,9 +26,12 @@ function App() {
   
   //add components here
   return (
-    <div>
-      <FrontPage />
-    </div>
+    <Router>
+    <Routes>
+      <Route path="/" element={<FrontPage/>} />
+      <Route path="/sign-up" element={<SignUp/>} />
+    </Routes>
+  </Router>
   )
 }
 

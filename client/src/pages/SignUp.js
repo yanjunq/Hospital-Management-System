@@ -1,25 +1,25 @@
 import React from 'react';
-import SignUp from './SignUp';
 import { useNavigate } from 'react-router-dom';
 
-function FrontPage(){
+
+function SignUp(){
   const navigate = useNavigate();
 
-  const signUpButton = () => {
-    navigate('/sign-up');
-  };
+  const mainPage = function(){
+    navigate("/")
+  }
 
   return (
     <div className='front-page'>
-      <h1>Log in</h1>
+      <h1>Sign up</h1>
+      <h3>Create username</h3>
       <input type='text' placeholder='Username'></input>
+      <h3>Create password</h3>
       <input type='text' placeholder='Password'></input>
-      <button>Log in</button>
-      <button onClick={signUpButton}>Sign up</button>
+      <button>Sign up</button>
+      <button onClick={mainPage}>Back</button>
     </div>
   );
 }
 
-
-
-export default FrontPage;
+export default SignUp;
