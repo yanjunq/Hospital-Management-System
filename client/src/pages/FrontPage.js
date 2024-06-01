@@ -1,25 +1,25 @@
-import React from 'react';
-import SignUp from './SignUp';
-import { useNavigate } from 'react-router-dom';
+import React, { Component } from 'react';
+import withNavigate from '../components/withNavigate';
 
-function FrontPage(){
-  const navigate = useNavigate();
+class FrontPage extends Component{
 
-  const signUpButton = () => {
-    navigate('/sign-up');
+  signUpButton = () => {
+    this.props.navigate('/sign-up');
   };
 
-  return (
-    <div className='front-page'>
-      <h1>Log in</h1>
-      <input type='text' placeholder='Username'></input>
-      <input type='text' placeholder='Password'></input>
-      <button>Log in</button>
-      <button onClick={signUpButton}>Sign up</button>
-    </div>
-  );
+  render(){
+    return (
+      <div className='front-page'>
+        <h1>Log in</h1>
+        <input type='text' placeholder='Username'></input>
+        <input type='text' placeholder='Password'></input>
+        <button>Log in</button>
+        <button onClick={this.signUpButton}>Sign up</button>
+      </div>
+    );
+  }
 }
 
 
 
-export default FrontPage;
+export default withNavigate(FrontPage);
