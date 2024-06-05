@@ -12,8 +12,8 @@ function FrontPage() {
   const [inputUserName, setInputUserName] = useState("");
 
  
-  signUpButton = () => {
-    this.props.navigate('/sign-up');
+  const signUpButton = () => {
+    navigate('/signup');
   };
 
 
@@ -70,4 +70,4 @@ function FrontPage() {
 
 // export default withNavigate(FrontPage);
 
-export default withNavFrontPage;
+export default FrontPage;
