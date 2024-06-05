@@ -12,15 +12,26 @@ class SignUp extends Component{
     this.props.navigate("/")
   }
 
-  submit(){
+  async submit(){
     let usr = document.getElementById("username")
     let psd = document.getElementById('password')
 
     console.log(usr.value)
     console.log(psd.value)
 
+    this.username = usr.value
+    this.password = psd.value
+
     usr.value = ''
     psd.value = ''
+
+
+    try {
+      const response = await axios.post('/api/signup', {username: this.username , password: this.password});
+      console.log(response.data); // Handle response from the server
+    } catch (error) {
+      console.error('Error:', error);
+    }
   }
 
   render(){
