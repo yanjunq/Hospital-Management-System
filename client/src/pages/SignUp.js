@@ -1,53 +1,53 @@
 import React, { Component } from 'react';
-import withNavigate from '../components/withNavigate';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 
-class SignUp extends Component{
+function SignUp(){
+  const navigate = useNavigate();
 
-  username = ''
-  password = ''
+  let username = ''
+  let password = ''
 
-  mainPage(){
-    this.props.navigate("/")
+  const mainPage = () => {
+    navigate("/")
   }
 
-  async submit(){
+  const submit = async(e) => {
+    e.preventDefault();
     let usr = document.getElementById("username")
     let psd = document.getElementById('password')
 
+    username = usr.value
+    password = psd.value
+    
     console.log(usr.value)
     console.log(psd.value)
-
-    this.username = usr.value
-    this.password = psd.value
 
     usr.value = ''
     psd.value = ''
 
 
     try {
-      const response = await axios.post('/api/signup', {username: this.username , password: this.password});
+      const response = await axios.post('/api/signup', {username , password});
       console.log(response.data); // Handle response from the server
     } catch (error) {
       console.error('Error:', error);
     }
   }
 
-  render(){
-    return (
+  return (
       <div className='front-page'>
         <h1>Sign up</h1>
         <h3>Create username</h3>
         <input id="username" type='text' placeholder='Username'></input>
         <h3>Create password</h3>
         <input id='password' type='text' placeholder='Password'></input>
-        <button onClick={this.submit}>Sign up</button>
-        <button onClick={this.mainPage}>Back</button>
+        <button onClick={submit}>Sign up</button>
+        <button onClick={mainPage}>Back</button>
       </div>
-    );
-  }
-
+  );
 }
 
-export default withNavigate(SignUp);
+
+export default SignUp;
