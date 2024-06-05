@@ -18,6 +18,9 @@ function SignUp(){
     let usr = document.getElementById("username")
     let psd = document.getElementById('password')
 
+    username = usr.value
+    password = psd.value
+    
     console.log(usr.value)
     console.log(psd.value)
 
