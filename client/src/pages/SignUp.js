@@ -47,7 +47,7 @@ class SignUp extends Component{
       </div>
     );
   }
- 
+
 }
 
 export default withNavigate(SignUp);

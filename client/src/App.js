@@ -1,9 +1,19 @@
 import React from 'react'
-import { useEffect, useState } from 'react'
+import { useEffect, useState} from 'react'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Header from './components/Header.js';
 import FrontPage from './pages/FrontPage.js';
 import SignUp from './pages/SignUp.js';
+import DoctorHomePage from './pages/DoctorHomePage.js';
+import DoctorAppointmentPage from './pages/DoctorAppointmentPage.js';
+import AdminHomePage from './pages/AdminHomePage.js';
+import AdminManageAppointmentPage from './pages/AdminManageAppointment.js';
+import AdminManageDoctorPage from './pages/AdminManageDoctor.js';
+import AdminManagePatientPage from './pages/AdminManagePatient.js';
+import { UserProvider } from './contexts/UserContext.js';
+
+
+
+
 
 function App() {
 
@@ -26,14 +36,24 @@ function App() {
   
   //add components here
   return (
-    <Router>
-    <Routes>
-      <Route path="/" element={<FrontPage/>} />
-      <Route path="/sign-up" element={<SignUp/>} />
-    </Routes>
-  </Router>
-  )
+ 
+    <UserProvider>
+      <Router>
+        <Routes>
+          <Route path="/" element={<FrontPage/>} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/doctor/home" element={<DoctorHomePage />} />
+          <Route path="/doctor/appointment" element={<DoctorAppointmentPage />} />
+          <Route path="/admin/home" element={<AdminHomePage />} />
+          <Route path="/admin/patient" element={<AdminManagePatientPage />} />
+          <Route path="/admin/doctor" element={<AdminManageDoctorPage />} />
+          <Route path="/admin/appointment" element={<AdminManageAppointmentPage />} />
+        </Routes>
+      </Router>
+    </UserProvider>
+  );
 }
+
 
 export default App
 
