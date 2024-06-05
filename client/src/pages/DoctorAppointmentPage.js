@@ -2,24 +2,58 @@ import React, { useEffect, useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
 import UserContext from '../contexts/UserContext';
+import axios from 'axios';
+
 
 const DoctorAppointmentPage = () => {
     const { userName } = useContext(UserContext);
     const [appointmentList, setAppointmentList] = useState([]);
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
+    
+    function fetchAppointmentByDoctorName(name) {
+        //test
+        name = "heheh"
+        axios.get('/api/appointments', { params: { doctorUserName: name } })
+            .then(response => {
+                if (response.data.length === 0) {
+                    console.log("No appointments found.");
+                    setAppointmentList([]); 
+                    setLoading(false);
+                } else {
+                    setAppointmentList(response.data);
+                    setLoading(false);
+                }
+            })
+    }
+                 
+    const fetchAppointmentByDoctor = () =>{
+            axios.get('http://localhost:5000/api/appointments/')
+            .then(response => {
+                if (response.data.length === 0) {
+                    console.log("No appointments found.");
+                    setAppointmentList([]); 
+                    setLoading(false); 
+                } else {
+                    setAppointmentList(response.data);
+                    setLoading(false);
+                }
+            })
+                
+            .catch(error => {
+                console.log("Error fetching appointment", error);
+                setLoading(false);
+            });
+        }
 
     useEffect(() => {
     
         setTimeout(() => {
-    
-            // setAppointmentList([
-            //     { firstName: 'John', lastName: 'Doe', contact: '123456789', date: '2023-06-10', time: '14:00' },
-            //     { firstName: 'Jane', lastName: 'Smith', contact: '987654321', date: '2023-06-11', time: '16:00' }
-            // ]);
+            fetchAppointmentByDoctorName(userName);
+            // fetchAppointmentByDoctor();
             setLoading(false);
         }, 2000);
-    }, []);
+    }, [userName]);
 
     const handleSearchPatient = (e) => {
         e.preventDefault();
