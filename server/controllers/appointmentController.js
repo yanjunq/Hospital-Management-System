@@ -58,7 +58,26 @@ const getDoctorAppointment = (req, res) => {
 }
 
 
+const deleteDoctorAppointmentByAppointmentID = (req, res) => {
+    const { id } = req.params;
+    const query = 'DELETE FROM APPOINTMNETS WHERE appointmentID = ?';
+
+    db.query(query, [id], (err, result) => {
+        if (err) {
+            console.log("fail to delete the doctoer appointment with appointment id" + id);
+            return res.status(500).send('failed to delete appointments');
+        }
+        if (result.affectedRows == 0) {
+            return res.status(404).send('Appointment not found');
+        }
+        res.send('Appointment delete successfully');
+        
+    });
+    
+}
+
 module.exports = {
     getAppointmentByDoctorUserName,
-    getDoctorAppointment
+    getDoctorAppointment,
+    deleteDoctorAppointmentByAppointmentID
 };

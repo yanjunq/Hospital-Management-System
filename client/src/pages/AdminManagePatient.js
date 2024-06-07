@@ -9,7 +9,7 @@ import UserContext from '../contexts/UserContext';
 const AdminManagePatientPage = () => {
   const {userName, setUserName} = useContext(UserContext);
   const navigate = useNavigate();
-  
+
   return (
       <div className='AdminHomePage'>
         <Header homePage={'/admin/homepage'}/>

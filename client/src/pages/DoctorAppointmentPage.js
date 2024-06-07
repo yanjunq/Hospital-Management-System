@@ -26,7 +26,7 @@ const DoctorAppointmentPage = () => {
                 }
             })
     }
-                 
+    
     const fetchAppointmentByDoctor = () =>{
             axios.get('http://localhost:5000/api/appointments/')
             .then(response => {
