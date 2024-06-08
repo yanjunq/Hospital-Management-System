@@ -1,3 +1,4 @@
+const { query } = require('express');
 const db = require('../database');
 
 const getAppointmentByDoctorUserName = (req, res) => {
@@ -76,8 +77,23 @@ const deleteDoctorAppointmentByAppointmentID = (req, res) => {
     
 }
 
+const addAppointmentBypatient = (req, res) => {
+    const { appointmentDate, startTime, endTime, doctorID, patientID } = req.body;
+    query = "INSERT INTO APPOINTMENT (appointmentDate, startTime, endTime, doctorID, patientID) VALUES (?, ?, ?, ?, ?)";
+    query(query, [appointmentDate, startTime, endTime, doctorID, patientID], (err, result) => {
+        if (err) {
+            console.log('fail to add an appointment');
+            res.status(500).send('fail to add an appointment');
+            return;
+        }
+        res.status(201).send({ message: 'Appointment added successfully', appointmentID: result.insertId });
+    })
+}
+
+
 module.exports = {
     getAppointmentByDoctorUserName,
     getDoctorAppointment,
-    deleteDoctorAppointmentByAppointmentID
+    deleteDoctorAppointmentByAppointmentID,
+    addAppointmentBypatient
 };

@@ -4,6 +4,6 @@ const { getAllPatients, deletePatientByID } = require('../controllers/patientCon
 
 patientoRouter.get('/', getAllPatients);
 
-patientoRouter.get('/:doctorID', deletePatientByID);
+patientoRouter.get('/:patientID', deletePatientByID);
 
 module.exports = patientoRouter;

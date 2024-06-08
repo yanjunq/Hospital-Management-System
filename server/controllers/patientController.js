@@ -16,7 +16,6 @@ const getAllPatients = (req, res) => {
     
 }
 
-
 const deletePatientByID = (req, res) => {
     const { id } = req.params;
     const query = 'DELETE FROM PATIENT WHERE patientID = ?';
